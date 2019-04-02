@@ -13,7 +13,7 @@ import nolambda.stiker.motionviews.widget.entity.TextEntity
 class EntityFactory constructor(fontProvider: FontProvider) {
 
     init {
-        MotionViewDependencyProvider.getInstance().fontProvider = fontProvider
+        MotionViewDependencyProvider.fontProvider = fontProvider
     }
 
     fun updateTextEntity(textEntity: TextEntity, result: TextInputResult): TextEntity {

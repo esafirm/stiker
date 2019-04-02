@@ -87,7 +87,7 @@ class TextEntity(
     private fun createBitmap(textLayer: TextLayer, reuseBmp: Bitmap?): Bitmap {
 
         val boundsWidth = canvasWidth
-        val fontProvider = MotionViewDependencyProvider.getInstance().fontProvider
+        val fontProvider = MotionViewDependencyProvider.fontProvider
 
         // init params - size, color, typeface
         textPaint.style = Paint.Style.FILL
