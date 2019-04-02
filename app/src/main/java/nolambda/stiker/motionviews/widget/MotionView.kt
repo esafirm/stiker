@@ -316,7 +316,7 @@ class MotionView : FrameLayout {
         }
         super.onRestoreInstanceState(state.superState)
         entities.clear()
-        entities.addAll(state.entities)
+        entities.addAll(state.getEntities())
     }
 
     private inner class TapsListener : GestureDetector.SimpleOnGestureListener() {

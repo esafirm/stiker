@@ -1,8 +1,6 @@
 package nolambda.stiker
 
 import androidx.annotation.DrawableRes
-import nolambda.stiker.motionviews.utils.FontProvider
-import nolambda.stiker.motionviews.utils.MotionViewDependencyProvider
 import nolambda.stiker.motionviews.viewmodel.Font
 import nolambda.stiker.motionviews.viewmodel.Layer
 import nolambda.stiker.motionviews.viewmodel.TextLayer
@@ -10,11 +8,7 @@ import nolambda.stiker.motionviews.widget.MotionView
 import nolambda.stiker.motionviews.widget.entity.ImageEntity
 import nolambda.stiker.motionviews.widget.entity.TextEntity
 
-class EntityFactory constructor(fontProvider: FontProvider) {
-
-    init {
-        MotionViewDependencyProvider.fontProvider = fontProvider
-    }
+class EntityFactory {
 
     fun updateTextEntity(textEntity: TextEntity, result: TextInputResult): TextEntity {
         val layer = textEntity.layer
