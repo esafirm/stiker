@@ -50,13 +50,9 @@ class ImageEntity(
         canvas.drawBitmap(bitmap, matrix, drawingPaint)
     }
 
-    override fun getWidth(): Int {
-        return bitmap.width
-    }
+    override val width: Int get() = bitmap.width
 
-    override fun getHeight(): Int {
-        return bitmap.height
-    }
+    override val height: Int get() = bitmap.height
 
     override fun release() {
         if (!bitmap.isRecycled) {
@@ -66,7 +62,7 @@ class ImageEntity(
 
     override fun serialize(): BaseEntitySavedState? {
         return ImageEntitySavedState(
-            getLayer(),
+            layer,
             MotionViewUtils.getMatrixValues(matrix),
             holyScale,
             canvasWidth,

@@ -12,6 +12,7 @@ import nolambda.stiker.motionviews.serialized.BaseEntitySavedState
 import nolambda.stiker.motionviews.serialized.PaintData
 import nolambda.stiker.motionviews.serialized.TextEntitySavedState
 import nolambda.stiker.motionviews.utils.MotionViewDependencyProvider
+import nolambda.stiker.motionviews.viewmodel.Layer
 import nolambda.stiker.motionviews.viewmodel.TextLayer
 import java.security.SecureRandom
 
@@ -31,13 +32,16 @@ class TextEntity(
         updateEntity(false)
     }
 
+    override val layer: TextLayer
+        get() = super.layer as TextLayer
+
     private fun updateEntity(moveToPreviousCenter: Boolean) {
         val bitmap = bitmap
 
         // save previous center
         val oldCenter = absoluteCenter()
 
-        val newBmp = createBitmap(getLayer(), bitmap)
+        val newBmp = createBitmap(layer, bitmap)
 
         // recycle previous bitmap (if not reused) as soon as possible
         if (bitmap?.isRecycled?.not() == true && bitmap != newBmp) {
@@ -142,30 +146,22 @@ class TextEntity(
         return bmp
     }
 
-    override fun getLayer(): TextLayer {
-        return layer as TextLayer
-    }
-
     override fun drawContent(canvas: Canvas, drawingPaint: Paint?) {
+        val bitmap = bitmap
         if (bitmap != null) {
-            canvas.drawBitmap(bitmap!!, matrix, drawingPaint)
+            canvas.drawBitmap(bitmap, matrix, drawingPaint)
         }
     }
 
-    override fun getWidth(): Int {
-        return if (bitmap != null) bitmap!!.width else 0
-    }
-
-    override fun getHeight(): Int {
-        return if (bitmap != null) bitmap!!.height else 0
-    }
+    override val width: Int get() = bitmap?.width ?: 0
+    override val height: Int get() = bitmap?.height ?: 0
 
     fun updateEntity() {
         updateEntity(true)
     }
 
     override fun release() {
-        if (bitmap != null && !bitmap!!.isRecycled) {
+        if (bitmap?.isRecycled?.not() == true) {
             bitmap!!.recycle()
         }
     }
@@ -184,7 +180,6 @@ class TextEntity(
     }
 
     companion object {
-
         private val random = SecureRandom()
     }
 }
