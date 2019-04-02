@@ -214,10 +214,10 @@ public class MotionView extends FrameLayout {
 
     public void selectEntity(@Nullable MotionEntity entity, boolean updateCallback) {
         if (selectedEntity != null) {
-            selectedEntity.setIsSelected(false);
+            selectedEntity.setSelected(false);
         }
         if (entity != null) {
-            entity.setIsSelected(true);
+            entity.setSelected(true);
         }
         selectedEntity = entity;
         invalidate();

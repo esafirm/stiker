@@ -60,17 +60,15 @@ class ImageEntity(
         }
     }
 
-    override fun serialize(): BaseEntitySavedState? {
-        return ImageEntitySavedState(
-            layer,
-            MotionViewUtils.getMatrixValues(matrix),
-            holyScale,
-            canvasWidth,
-            canvasHeight,
-            PaintData(borderPaint.strokeWidth, borderPaint.color),
-            bitmapProvider
-        )
-    }
+    override fun serialize(): BaseEntitySavedState? = ImageEntitySavedState(
+        layer,
+        MotionViewUtils.getMatrixValues(matrix),
+        holyScale,
+        canvasWidth,
+        canvasHeight,
+        PaintData(borderPaint.strokeWidth, borderPaint.color),
+        bitmapProvider
+    )
 
     interface BitmapProvider : Serializable {
         val image: Bitmap

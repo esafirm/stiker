@@ -14,7 +14,7 @@ abstract class MotionEntity(
     /**
      * data
      */
-    protected open val layer: Layer,
+    open val layer: Layer,
     /**
      * width of canvas the entity is drawn in
      */
@@ -36,8 +36,7 @@ abstract class MotionEntity(
      * true - entity is selected and need to draw it's border
      * false - not selected, no need to draw it's border
      */
-    private var isSelected: Boolean = false
-        set
+    var isSelected: Boolean = false
 
     /**
      * maximum scale of the initial image, so that
